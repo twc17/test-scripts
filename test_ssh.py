@@ -34,16 +34,28 @@ def ui():
         print("Caught KeyboardInterrupt, terminating!")
         print()
         sys.exit(1)
+    except:
+        print()
+        print("Hmmm, something else happened. Send this to the dev team!")
+        print()
+        raise
+        sys.exit(1)
 
     return user, host, cmd
 
 # EXECUTE
-def execute(h, u, c):
+def execute(hst, usr, cmd):
     """
     Executes command on ssh server and returns output
     """
-    l = u + "@" + h
-    return subprocess.check_output(['ssh','-o', 'StrictHostKeyChecking=no', '-o', 'ConnectTimeout=10', l, c], universal_newlines=True)
+    login = usr + "@" + hst
+    try:
+        output = subprocess.check_output(['ssh','-o', 'StrictHostKeyChecking=no', '-o', 'ConnectTimeout=10', login, cmd], universal_newlines=True)
+    except subprocess.CalledProcessError as e:
+        print()
+        raise
+
+    return output
 
 # MAIN
 def main():
@@ -51,7 +63,9 @@ def main():
     Main program function
     """
     u, h, c = ui()
+    print()
     print(execute(h, u, c))
+    print()
 
 # RUN
 if __name__ == "__main__":
