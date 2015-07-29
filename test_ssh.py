@@ -2,7 +2,7 @@
 
 """
 Title: test_ssh.py
-Language: python
+Language: python3
 Author: Troy Caro <twc17@pitt.edu>
 Purpose: Testing some SSH stuff
 """
@@ -65,7 +65,7 @@ def port_address():
             return hst, cmd
         else:
             print()
-            print("Hmmm, couldn't find the switch pased on that port, pass to the NOC")
+            print("Hmmm, couldn't find the switch based on that port, pass to the NOC")
             print()
             sys.exit(1)
 
