@@ -8,6 +8,7 @@ Purpose: Testing some SSH stuff
 """
 
 import sys
+import socket
 import subprocess
 
 # INPUT
@@ -18,32 +19,72 @@ def ui():
     Pre-conditions:
             The input is formatted correctly
             The username is entered correctly
-            The host is alive, accepting connections
-            Command is valid
 
     Post-conditions:
-        Returns the username, host, and command
+        Returns the username
     """
     try:
-        host = input("Enter the hostname or ip address: ")
-        user = input("Enter the username for the remote host: ")
-        cmd = input("Enter the command you would like to execute: ")
+        user = input("Enter your AD username: ")
     except KeyboardInterrupt:
         print()
         print()
         print("Caught KeyboardInterrupt, terminating!")
         print()
         sys.exit(1)
-    except:
+
+    return user
+
+def port_address():
+    """
+    Gets user input for the port addres.
+
+    Pre-conditions:
+            The port address is formatted correctly
+    Post-condititons:
+            Returns the switch (host) to connect to, and the command to run
+    """
+    try:
+        port = input("Enter the port address: ")
+    except KeyboardInterrupt:
         print()
-        print("Hmmm, something else happened. Send this to the dev team!")
         print()
-        raise
+        print("Caught KeyboardInterrupt, terminating!")
+        print()
         sys.exit(1)
 
-    return user, host, cmd
+    port_num = port.split("-")
+    cmd  = "sh int status | incl " + port_num[2] 
+
+    hst = port_num[1] + "-a-1.c3750"
+
+    if (check_host(hst) == 1):
+        return hst, cmd
+    else:
+        hst = port_num[1] + "-a-1.c3850"
+        if (check_host(hst) == 1):
+            return hst, cmd
+        else:
+            print()
+            print("Hmmm, couldn't find the switch pased on that port, pass to the NOC")
+            print()
+            sys.exit(1)
 
 # EXECUTE
+def check_host(hst):
+    """
+    Trys to resolve the hostname
+
+    Pre-conditions:
+            Hostname is formatted correctly
+    Post-conditions:
+            Returns 1 if the hostname resolves, 0 if it does not
+    """
+    try:
+        socket.gethostbyname(hst)
+        return 1
+    except socket.error:
+        return 0
+
 def execute(hst, usr, cmd):
     """
     Executes command on ssh server and returns output
@@ -62,9 +103,9 @@ def main():
     """
     Main program function
     """
-    u, h, c = ui()
-    print()
-    print(execute(h, u, c))
+    usr = ui()
+    hst, cmd = port_address()
+    print(execute(hst, usr, cmd))
     print()
 
 # RUN
