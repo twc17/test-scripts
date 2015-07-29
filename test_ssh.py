@@ -55,12 +55,12 @@ def port_address():
     port_num = port.split("-")
     cmd  = "sh int status | incl " + port_num[2] 
 
-    hst = port_num[1] + "-a-1.c3750.net.pitt.edu"
+    hst = port_num[1] + "-a-1.c3850.net.pitt.edu"
 
     if (check_host(hst) == 1):
         return hst, cmd
     else:
-        hst = port_num[1] + "-a-1.c3850.net.pitt.edu"
+        hst = port_num[1] + "-a-1.c3750.net.pitt.edu"
         if (check_host(hst) == 1):
             return hst, cmd
         else:
