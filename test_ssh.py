@@ -69,6 +69,28 @@ def port_address():
             print()
             sys.exit(1)
 
+def search_mac():
+    """
+    Constructs command based on MAC address
+
+    Pre-conditions:
+            The MAC address is formatted correctly
+            xxxx.xxxx.xxxx
+    Post-conditions:
+            Returns the command to run
+    """
+    try:
+        mac = input("Enter the MAC address to search for on this switch: ")
+    except KeyboardInterrupt:
+        print()
+        print("Caught KeyboardInterrupt, terminating!")
+        print()
+        sys.exit(1)
+
+    mac = mac.lower().split(".")
+    
+    return "sh mac add | incl " + mac[2]
+
 # EXECUTE
 def check_host(hst):
     """
@@ -105,7 +127,18 @@ def main():
     """
     usr = ui()
     hst, cmd = port_address()
-    print(execute(hst, usr, cmd))
+    output = execute(hst, usr, cmd))
+
+    if (output == None):
+        print()
+        search = input("Hmm, couldn't find that port address, would you like to search by MAC address on this switch? (Y/N) ")
+
+        if (search == 'Y'):
+            output = execute(hst, usr, search_mac()) 
+        else:
+            sys.exit(1)
+
+    print(output)
 
 # RUN
 if __name__ == "__main__":
