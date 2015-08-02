@@ -138,6 +138,8 @@ def main():
         else:
             sys.exit(1)
 
+    print("OUTPUT GETS PRINTED HERE")
+    print()
     print(output)
 
 # RUN
