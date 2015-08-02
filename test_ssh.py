@@ -127,7 +127,7 @@ def main():
     """
     usr = ui()
     hst, cmd = port_address()
-    output = execute(hst, usr, cmd))
+    output = execute(hst, usr, cmd)
 
     if (output == None):
         print()
