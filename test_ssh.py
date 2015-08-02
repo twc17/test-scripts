@@ -87,9 +87,7 @@ def search_mac():
         print()
         sys.exit(1)
 
-    mac = mac.lower().split(".")
-    
-    return "sh mac add | incl " + mac[2]
+    return "sh mac add | incl " + mac
 
 # EXECUTE
 def check_host(hst):
@@ -138,8 +136,6 @@ def main():
         else:
             sys.exit(1)
 
-    print("OUTPUT GETS PRINTED HERE")
-    print()
     print(output)
 
 # RUN
