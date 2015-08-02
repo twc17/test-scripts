@@ -138,7 +138,7 @@ def main():
             sys.exit(1)
 
     print(output)
-    print(execute(hst, usr, ("sh mac add int " + output.split()[0])))
+    # print(execute(hst, usr, ("sh mac add int " + output.split()[0])))
 
 # RUN
 if __name__ == "__main__":
