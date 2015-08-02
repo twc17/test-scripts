@@ -129,7 +129,7 @@ def main():
     hst, cmd = port_address()
     output = execute(hst, usr, cmd)
 
-    if (output == None):
+    if (output == ""):
         print()
         search = input("Hmm, couldn't find that port address, would you like to search by MAC address on this switch? (Y/N) ")
 
