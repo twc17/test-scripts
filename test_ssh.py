@@ -133,7 +133,7 @@ def main():
 
         if (search == 'Y'):
             output = execute(hst, usr, search_mac()) 
-            output = execute(hst, usr, ("sh int " + output.split()[3] + " status"))
+            output = execute(hst, usr, ("sh int status | incl " + output.split()[3]))
         else:
             sys.exit(1)
 
