@@ -123,7 +123,7 @@ def execute(hst, usr, passwd, cmd):
         print()
         sys.exit(1)
 
-    return stdout.read()
+    return stdout
 
 # MAIN
 def main():
@@ -144,7 +144,8 @@ def main():
         else:
             sys.exit(1)
 
-    print(output)
+    for line in output:
+        print(line)
 
 # RUN
 if __name__ == "__main__":
