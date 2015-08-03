@@ -146,7 +146,7 @@ def main():
         else:
             sys.exit(1)
 
-    print(output.readlines())
+    print(output)
 
 # RUN
 if __name__ == "__main__":
