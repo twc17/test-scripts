@@ -117,7 +117,7 @@ def execute(hst, usr, passwd, cmd):
     ssh.connect(hst, 22, usr, passwd)
     stdin, stdout, stderr = ssh.exec_command(cmd)
     
-    return stdout.read.splitlines()
+    return stdout.read().splitlines()
 
 # MAIN
 def main():
