@@ -123,7 +123,7 @@ def execute(hst, usr, passwd, cmd):
         print()
         sys.exit(1)
 
-    return stdout.read().splitlines()
+    return stdout.read()
 
 # MAIN
 def main():
