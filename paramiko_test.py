@@ -116,7 +116,6 @@ def execute(hst, usr, passwd, cmd):
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
         ssh.connect(hst, 22, usr, passwd)
-        ssh.exec_command("terminal length 0")
         stdin, stdout, stderr = ssh.exec_command(cmd)
     except paramiko.ssh_exception.AuthenticationException as e:
         print()
