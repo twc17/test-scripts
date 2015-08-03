@@ -114,7 +114,7 @@ def execute(hst, usr, passwd, cmd):
     """
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(hst, usr, 22, passwd)
+    ssh.connect(hst, 22, usr, passwd)
     stdin, stdout, stderr = ssh.exec_command(cmd)
     
     return stdout.read.splitlines()
