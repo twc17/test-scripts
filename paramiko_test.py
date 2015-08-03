@@ -114,9 +114,14 @@ def execute(hst, usr, passwd, cmd):
     """
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(hst, 22, usr, passwd)
-    stdin, stdout, stderr = ssh.exec_command(cmd)
-    
+    try:
+        ssh.connect(hst, 22, usr, passwd)
+        stdin, stdout, stderr = ssh.exec_command(cmd)
+    except AuthenticationException as e:
+        print()
+        print("Oops, looks like you entered your username/password wrong :/")
+        sys.exit(1)
+
     return stdout.read().splitlines()
 
 # MAIN
