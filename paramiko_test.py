@@ -117,7 +117,7 @@ def execute(hst, usr, passwd, cmd):
     try:
         ssh.connect(hst, 22, usr, passwd)
         stdin, stdout, stderr = ssh.exec_command(cmd)
-    except AuthenticationException as e:
+    except paramiko.ssh_exception.AuthenticationException as e:
         print()
         print("Oops, looks like you entered your username/password wrong :/")
         sys.exit(1)
