@@ -116,16 +116,14 @@ def execute(hst, usr, passwd, cmd):
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
         ssh.connect(hst, 22, usr, passwd)
-        # ssh.exec_command("terminal length 0")
-        ssh.exec_command(cmd)
-        output = ssh.recv(5000)
+        stdin, stdout, stderr = ssh.exec_command(cmd)
     except paramiko.ssh_exception.AuthenticationException as e:
         print()
         print("Oops, looks like you entered your username or password wrong :/")
         print()
         sys.exit(1)
 
-    return output
+    return stdout
 
 # MAIN
 def main():
@@ -147,7 +145,7 @@ def main():
         else:
             sys.exit(1)
 
-    print(output)
+    print(output.readlines())
 
 # RUN
 if __name__ == "__main__":
