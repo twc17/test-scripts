@@ -126,15 +126,15 @@ def main():
     """
     usr, passwd = ui()
     hst, cmd = port_address()
-    output = execute(hst, usr, passwd, cmd)
+    output = execute(socket.gethostbyname(hst), usr, passwd, cmd)
 
     if (output == ""):
         print()
         search = input("Hmm, couldn't find that port address, would you like to search by MAC address on this switch? (Y/N) ")
 
         if (search == 'Y'):
-            output = execute(hst, usr, passwd, search_mac()) 
-            output = execute(hst, usr, passwd, ("sh int status | incl " + output.split()[3]))
+            output = execute(socket.gethostbyname(hst), usr, passwd, search_mac()) 
+            output = execute(socket.gethostbyname(hst), usr, passwd, ("sh int status | incl " + output.split()[3]))
         else:
             sys.exit(1)
 
