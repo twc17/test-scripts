@@ -149,6 +149,7 @@ def main():
             output = execute(hst, usr, passwd, search_mac()) 
             output = output.decode(encoding='UTF-8')
             output = execute(hst, usr, passwd, ("sh int status | incl " + output.split()[3]))
+            output = output.decode(encoding='UTF-8')
         else:
             sys.exit(1)
 
