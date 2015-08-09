@@ -133,6 +133,9 @@ def main():
     """
     usr, passwd = ui()
     hst, cmd = port_address()
+    # Host name is checked on port_address()
+    # Since it didn't error out, we know the hostname resolves
+    # Okay to assign hst as IP address
     hst = socket.gethostbyname(hst)
     output = execute(hst, usr, passwd, cmd)
 
@@ -146,7 +149,7 @@ def main():
         else:
             sys.exit(1)
 
-    print(output)
+    print(output.decode(encoding='UTF-8'))
 
 # RUN
 if __name__ == "__main__":
