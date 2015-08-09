@@ -138,6 +138,7 @@ def main():
     # Okay to assign hst as IP address
     hst = socket.gethostbyname(hst)
     output = execute(hst, usr, passwd, cmd)
+    output = output.decode(encoding='UTF-8')
 
     if (output == ""):
         print()
@@ -146,10 +147,11 @@ def main():
         if (search == 'Y'):
             output = execute(hst, usr, passwd, search_mac()) 
             output = execute(hst, usr, passwd, ("sh int status | incl " + output.split()[3]))
+            output = output.decode(encoding='UTF-8')
         else:
             sys.exit(1)
 
-    print(output.decode(encoding='UTF-8'))
+    print(output)
 
 # RUN
 if __name__ == "__main__":
