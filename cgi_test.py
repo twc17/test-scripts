@@ -116,8 +116,8 @@ def execute(hst, usr, passwd, cmd):
 
 
 # Start
+print("Content-type:text/html\r\n\r\n")       
 print("""
-Content-type:text/html\r\n\r\n       
 <html>
 
 <head><title>Port Lookup Tool</title></head>
