@@ -115,7 +115,7 @@ print("Content-type:text/html\r\n\r\n")
 print("""
 <html>
 
-<head><title>Testing real-time port look-up tool</title></head>
+<head><title>Port Lookup Tool</title></head>
 <h><b>Testing real-time port look-up tool</h>
 
 <body>
