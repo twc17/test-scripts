@@ -53,11 +53,7 @@ def port_address(port):
         if (check_host(hst) == 1):
             return hst, cmd
         else:
-            print("""
-            <p> Hmm, couldn't find the switch based on that port address :/ </p>
-            </body>
-            </html>
-            """)
+            print("<p> Hmm, couldn't find the switch based on that port address :/ </p>")
             sys.exit(1)
 
 def search_mac():
