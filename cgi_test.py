@@ -103,9 +103,7 @@ def execute(hst, usr, passwd, cmd):
         stdin, stdout, stderr = ssh.exec_command(cmd)
         output = stdout.read().strip()
     except paramiko.ssh_exception.AuthenticationException as e:
-        print()
-        print("Oops, looks like you entered your username or password wrong :/")
-        print()
+        print("<p> Oops, looks like you entered your username or password wrong :/ </p>")
         sys.exit(1)
 
     return output.decode(encoding='UTF-8')
@@ -133,7 +131,7 @@ passwd = form.getvalue('password')
 # Check to see if the port maps to a switch before going any further
 # port_address() is set to exit if it can't find the switch
 hst, cmd = port_address(port)
-print(execute(hst, usr, passwd, cmd))
+print("<p>" + execute(hst, usr, passwd, cmd) + "</p>")
 print("""
 </body>
 </html>
