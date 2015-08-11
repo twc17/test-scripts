@@ -53,7 +53,10 @@ def port_address(port):
         if (check_host(hst) == 1):
             return hst, cmd
         else:
-            return 0
+            print()
+            print("Hmm, couldn't find the switch based on that port address :/")
+            print()
+            sys.exit(1)
 
 def search_mac():
     """
@@ -128,14 +131,10 @@ form = cgi.FieldStorage()
 port = form.getvalue('port_address')
 
 # Check to see if the port maps to a switch before going any further
+# port_address() is set to exit if it can't find the switch
 hst, cmd = port_address(port)
-if (hst == 0):
-    print("""
-    <p>Hmmm, couldn't find the switch based on that port address.</p>
-    """)
-else:
-    print(execute(hst, usr, passwd, cmd))
-    print("""
-    </body>
-    </html>
-    """)
+print(execute(hst, usr, passwd, cmd))
+print("""
+</body>
+</html>
+""")
