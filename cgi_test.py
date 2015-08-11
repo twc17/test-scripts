@@ -53,9 +53,7 @@ def port_address(port):
         if (check_host(hst) == 1):
             return hst, cmd
         else:
-            print()
             print("Hmm, couldn't find the switch based on that port address :/")
-            print()
             sys.exit(1)
 
 def search_mac():
@@ -119,7 +117,7 @@ Content-type:text/html\r\n\r\n
 <html>
 
 <head><title>Port Lookup Tool</title></head>
-<h><b>Testing real-time port look-up tool</h>
+<h><b>Testing real-time port look-up tool</b></h>
 
 <body>
 """)
