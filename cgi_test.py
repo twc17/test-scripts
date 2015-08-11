@@ -127,6 +127,8 @@ form = cgi.FieldStorage()
 
 # Get port address from html form
 port = form.getvalue('port_address')
+usr = form.getvalue('user_name')
+passwd = form.getvalue('password')
 
 # Check to see if the port maps to a switch before going any further
 # port_address() is set to exit if it can't find the switch
