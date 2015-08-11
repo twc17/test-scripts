@@ -53,9 +53,11 @@ def port_address(port):
         if (check_host(hst) == 1):
             return hst, cmd
         else:
-            print()
-            print("Hmm, couldn't find the switch based on that port address :/")
-            print()
+            print("""
+            <p> Hmm, couldn't find the switch based on that port address :/ </p>"
+            </body>
+            </html>
+            """)
             sys.exit(1)
 
 def search_mac():
@@ -114,8 +116,8 @@ def execute(hst, usr, passwd, cmd):
 
 
 # Start
-print("Content-type:text/html\r\n\r\n")
 print("""
+Content-type:text/html\r\n\r\n       
 <html>
 
 <head><title>Port Lookup Tool</title></head>
