@@ -54,7 +54,7 @@ def port_address(port):
             return hst, cmd
         else:
             print()
-            print("<p> Hmm, couldn't find the switch based on that port address :/ </p>")
+            print("Hmm, couldn't find the switch based on that port address :/")
             print()
             sys.exit(1)
 
