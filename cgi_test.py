@@ -9,7 +9,6 @@ Purpose: Testing some SSH stuff
 
 import sys
 import socket
-import getpass
 import paramiko
 
 # Here is where the magic starts
@@ -17,29 +16,6 @@ import cgi
 import cgitb
 
 # INPUT
-def ui():
-    """
-    Gets console input for username to host
-
-    Pre-conditions:
-            The input is formatted correctly
-            The username is entered correctly
-
-    Post-conditions:
-        Returns the username
-    """
-    try:
-        user = input("Enter your AD username: ")
-        passwd = getpass.getpass("Enter the password for " + user + ": ")
-    except KeyboardInterrupt:
-        print()
-        print()
-        print("Caught KeyboardInterrupt, terminating!")
-        print()
-        sys.exit(1)
-
-    return user, passwd
-
 def port_address(port):
     port_num = port.split("-")
     cmd  = "sh int status | incl " + port_num[2] 
