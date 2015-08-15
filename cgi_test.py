@@ -87,17 +87,18 @@ def execute(hst, usr, passwd, cmd):
 
 # Start
 print("Content-type:text/html\r\n\r\n")       
+
+# Create instance of FieldStorage
+form = cgi.FieldStorage()
+
 print("""
 <html>
 
 <head><title>Port Lookup Tool</title></head>
-<h><b>Testing real-time port look-up tool</b></h>
 
 <body>
 """)
-
-# Create instance of FieldStorage
-form = cgi.FieldStorage()
+print("<h1>Results for <b>" + form.getvalue('port_address') + "</b></h1>" )
 
 # Get port address from html form
 port = form.getvalue('port_address')
