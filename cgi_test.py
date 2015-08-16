@@ -32,26 +32,6 @@ def port_address(port):
             print("<p> Hmm, couldn't find the switch based on that port address :/ </p>")
             sys.exit(1)
 
-def search_mac():
-    """
-    Constructs command based on MAC address
-
-    Pre-conditions:
-            The MAC address is formatted correctly
-            xxxx.xxxx.xxxx
-    Post-conditions:
-            Returns the command to run
-    """
-    try:
-        mac = input("Enter the MAC address to search for on this switch: ")
-    except KeyboardInterrupt:
-        print()
-        print("Caught KeyboardInterrupt, terminating!")
-        print()
-        sys.exit(1)
-
-    return "sh mac add | incl " + mac
-
 # EXECUTE
 def check_host(hst):
     """
@@ -91,6 +71,11 @@ print("Content-type:text/html\r\n\r\n")
 # Create instance of FieldStorage
 form = cgi.FieldStorage()
 
+# Get port address from html form
+port = form.getvalue('port_address')
+usr = form.getvalue('user_name')
+passwd = form.getvalue('password')
+
 print("""
 <html>
 
@@ -100,15 +85,17 @@ print("""
 """)
 print("<h1>Results for <b>" + form.getvalue('port_address') + "</b></h1>" )
 
-# Get port address from html form
-port = form.getvalue('port_address')
-usr = form.getvalue('user_name')
-passwd = form.getvalue('password')
-
 # Check to see if the port maps to a switch before going any further
 # port_address() is set to exit if it can't find the switch
 hst, cmd = port_address(port)
-print("<p>" + execute(hst, usr, passwd, cmd) + "</p>")
+output = execute(hst, usr, passwd, cmd)
+
+if (output == ""):
+    print("<p> I found the switch, but not the port :/ </p>")
+    print("<p> If the device is connected, you can try searching by MAC address <a href='somewhereelse.html>here</a>. </p>")
+    sys.exit(1)
+
+print("<p>" + output + "</p>")
 print("""
 </body>
 </html>
