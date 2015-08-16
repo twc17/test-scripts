@@ -92,7 +92,8 @@ output = execute(hst, usr, passwd, cmd)
 
 if (output == ""):
     print("<p> I found the switch, but not the port :/ </p>")
-    print("<p> If the device is connected, you can try searching by MAC address <a href='somewhereelse.html'>here</a>. </p>")
+    # Haven't quite figured out the best way to handle this yet
+    print("<p> If the device is connected, you can try searching by MAC address <a href='mac_search.html?port_address='" + port + "'>here</a>. </p>")
     sys.exit(1)
 
 print("<p>" + output + "</p>")
