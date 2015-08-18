@@ -33,6 +33,12 @@ print("<h1>Results for <b>" + mac + "</b></h1>" )
 # port_address() is set to exit if it can't find the switch
 hst, cmd = port_address(port)
 output = execute(hst, usr, passwd, ("sh mac add | incl " + mac))
+
+if (output == ""):
+    print("<p> Doesn't look like that device is connected </p>")
+    print("<p> If the device is really connected, it could be indicating some kind of issue </p>")
+    sys.exit(1)
+
 output = execute(hst, usr, passwd, ("sh int status | incl " + output.split()[3]))
 
 print("<p>" + output + "</p>")
