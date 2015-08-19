@@ -40,7 +40,13 @@ if (output == ""):
     print("<p> If the device is connected, you can try searching by MAC address <a href='http://136.142.3.230/mac_search.html?port_address=" + port + "'>here</a>. </p>")
     sys.exit(1)
 
-print("<p>" + output + "</p>")
+output = output.split()
+
+print("<p><b>Port Address: </b>" + output[1] + "</p>")
+print("<p><b>Status: </b>" + output[2] + "</b></p>")
+print("<p><b>VLAN: </b>" + output[3] + "</b></p>")
+print("<p><b>Speed: </b>" + output[4] + "</b></p>")
+print("<p><b>Duplex: </b>" + output[5] + "</b></p>")
 print("""
 </body>
 </html>

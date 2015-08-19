@@ -41,7 +41,13 @@ if (output == ""):
 
 output = execute(hst, usr, passwd, ("sh int status | incl " + output.split()[3]))
 
-print("<p>" + output + "</p>")
+output = output.split()
+
+print("<p><b>Port Address: </b>" + output[1] + "</p>")
+print("<p><b>Status: </b>" + output[2] + "</b></p>")
+print("<p><b>VLAN: </b>" + output[3] + "</b></p>")
+print("<p><b>Speed: </b>" + output[4] + "</b></p>")
+print("<p><b>Duplex: </b>" + output[5] + "</b></p>")
 print("""
 </body>
 </html>
