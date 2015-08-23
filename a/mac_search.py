@@ -23,10 +23,16 @@ mac = form.getvalue('mac_address')
 print("""
 <html>
 
-<head><title>Port Lookup Tool</title></head>
+<head>
 
+<link rel="stylesheet" type="text/css" href="../../style.css">
+
+<title>Port Lookup Tool</title>
+
+</head>
 <body>
 """)
+print("<div class=\"center\">")
 print("<h1>Results for <b>" + mac + "</b></h1>" )
 
 # Check to see if the port maps to a switch before going any further
@@ -57,6 +63,7 @@ print("<p><b>Speed: </b>" + output[5] + "</p>")
 print("<p><b>Duplex: </b>" + output[4] + "</p>")
 print("<p><b>MAC: </b>" + mac_status + "</p>")
 print("""
+</div>
 </body>
 </html>
 """)
