@@ -42,12 +42,20 @@ if (output == ""):
 output = execute(hst, usr, passwd, ("sh int status | incl " + output.split()[3]))
 
 output = output.split()
+mac_status = output[2]
+
+if (mac_status == "connected"):
+    mac_status = execute(hst, usr, passwd, ("sh mac add | incl " + output[0]))
+    mac_status = mac_status.split()[1]
+else:
+    mac_status = "None"
 
 print("<p><b>Port Address: </b>" + output[1] + "</p>")
-print("<p><b>Status: </b>" + output[2] + "</b></p>")
-print("<p><b>VLAN: </b>" + output[3] + "</b></p>")
-print("<p><b>Speed: </b>" + output[4] + "</b></p>")
-print("<p><b>Duplex: </b>" + output[5] + "</b></p>")
+print("<p><b>Status: </b>" + output[2] + "</p>")
+print("<p><b>VLAN: </b>" + output[3] + "</p>")
+print("<p><b>Speed: </b>" + output[4] + "</p>")
+print("<p><b>Duplex: </b>" + output[5] + "</p>")
+print("<p><b>MAC: </b>" + mac_status + "</p>")
 print("""
 </body>
 </html>
