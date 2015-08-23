@@ -52,8 +52,8 @@ else:
 print("<p><b>Port Address: </b>" + output[1] + "</p>")
 print("<p><b>Status: </b>" + output[2] + "</p>")
 print("<p><b>VLAN: </b>" + output[3] + "</p>")
-print("<p><b>Speed: </b>" + output[4] + "</p>")
-print("<p><b>Duplex: </b>" + output[5] + "</p>")
+print("<p><b>Speed: </b>" + output[5] + "</p>")
+print("<p><b>Duplex: </b>" + output[4] + "</p>")
 print("<p><b>MAC: </b>" + mac_status + "</p>")
 print("""
 </body>
