@@ -50,8 +50,11 @@ output = output.split()
 mac_status = output[2]
 
 if (mac_status == "connected"):
-    mac_status = execute(hst, usr, passwd, ("sh mac add | incl " + output[0]))
-    mac_status = mac_status.split()[1]
+    mac_test = execute(hst, usr, passwd, ("sh mac add | incl " + output[0]))
+    if (mac_test == ""):
+        mac_status = "Hmm..? :/"
+    else:
+        mac_status = mac_status.split()[1]
 else:
     mac_status = "None"
 
